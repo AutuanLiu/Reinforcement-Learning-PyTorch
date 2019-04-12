@@ -121,6 +121,43 @@ $$
 
 ![强化学习分类](./imgs/RL_algos.png)
 
+## 策略优化
+
+1. **Probability of a Trajectory**
+
+$$
+P(\tau | \theta)=\rho_{0}\left(s_{0}\right) \prod_{t=0}^{T} P\left(s_{t+1} | s_{t}, a_{t}\right) \pi_{\theta}\left(a_{t} | s_{t}\right)
+$$
+
+2. **The Log-Derivative Trick**
+
+$$
+\nabla_{\theta} P(\tau | \theta)=P(\tau | \theta) \nabla_{\theta} \log P(\tau | \theta)**Log-Probability of a Trajectory**
+$$
+
+3. **Log-Probability of a Trajectory**
+
+$$
+\log P(\tau | \theta)=\log \rho_{0}\left(s_{0}\right)+\sum_{t=0}^{T}\left(\log P\left(s_{t+1} | s_{t}, a_{t}\right)+\log \pi_{\theta}\left(a_{t} | s_{t}\right)\right)
+$$
+
+4. **Gradients of Environment Functions**
+
+   Environment 不依赖于$\theta$, 所以 $\rho_{0}\left(s_{0}\right), P\left(s_{t+1} | s_{t}, a_{t}\right)$ 和 $R(\tau)$ 的梯度是$0$。
+
+5. **Grad-Log-Prob of a Trajectory**
+
+$$
+\begin{aligned} \nabla_{\theta} \log P(\tau | \theta) &=\nabla_{\theta} \log \rho_{0}\left(s_{0}\right)+\sum_{t=0}^{T}\left(\nabla_{\theta} \log P\left(s_{t+1}+\sqrt{s_{t}, a_{t} )}+\nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right)\right)\right.\\ &=\sum_{t=0}^{T} \nabla_{\theta} \log \pi_{\theta}\left(a_{t} | s_{t}\right) \end{aligned}
+$$
+
+### **Expected Grad-Log-Prob Lemma**
+
+假设随机变量 $x$ 的概率分布为 $P_\theta$, 那么
+$$
+\underset{x \sim P_{\theta}}{\mathrm{E}}\left[\nabla_{\theta} \log P_{\theta}(x)\right]=0
+$$
+
 ## 参考资料
 
 1. [Welcome to Spinning Up in Deep RL! — Spinning Up documentation](https://spinningup.openai.com/en/latest/index.html)
