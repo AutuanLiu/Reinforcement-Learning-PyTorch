@@ -1,0 +1,6 @@
+[submodule "deep-reinforcement-learning"]
+	path = deep-reinforcement-learning
+	url = git@github.com:udacity/deep-reinforcement-learning.git
+[submodule "reinforcement-learning-an-introduction"]
+	path = reinforcement-learning-an-introduction
+	url = git@github.com:ShangtongZhang/reinforcement-learning-an-introduction.git
